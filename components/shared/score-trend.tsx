@@ -1,5 +1,6 @@
 import type { Measure, Rapid3Bucket } from "@/lib/types";
 import { RAPID3_MAX } from "@/lib/clinical/rapid3";
+import { cn } from "@/lib/utils";
 
 const BUCKET_VAR: Record<Rapid3Bucket, string> = {
   remission: "var(--normal)",
@@ -17,12 +18,15 @@ export function ScoreTrend({
   width = 168,
   height = 44,
   monochrome = false,
+  fluid = false,
 }: {
   measures: Measure[];
   width?: number;
   height?: number;
   /** Patient-facing: render every point in the brand color (no severity coloring). */
   monochrome?: boolean;
+  /** Scale to the container width (px size becomes the intrinsic aspect ratio). */
+  fluid?: boolean;
 }) {
   if (measures.length === 0) {
     return <span className="text-ink-subtle text-label">No check-ins yet</span>;
@@ -44,7 +48,7 @@ export function ScoreTrend({
       viewBox={`0 0 ${width} ${height}`}
       role="img"
       aria-label={`RAPID3 trend: ${measures.map((m) => m.value).join(", ")}`}
-      className="overflow-visible"
+      className={cn("overflow-visible", fluid && "block h-auto w-full")}
     >
       {n > 1 && (
         <polyline

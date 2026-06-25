@@ -66,7 +66,7 @@ export function TopBar() {
   }
 
   return (
-    <header className="bg-canvas border-border sticky top-0 z-40 flex h-14 items-center justify-between border-b px-6">
+    <header className="bg-canvas border-border sticky top-0 z-40 flex h-14 items-center justify-between border-b px-4 sm:px-6">
       <Link href="/console" className="flex items-center gap-2">
         <span className="bg-primary text-on-primary flex size-7 items-center justify-center rounded-md">
           <Sparkles className="size-4" />

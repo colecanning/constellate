@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Constellate",
   description:
     "Between-visit patient monitoring for rheumatology — the treat-to-target loop, instrumented.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

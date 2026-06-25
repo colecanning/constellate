@@ -61,7 +61,7 @@ function Segmented({
           aria-checked={value === i}
           onClick={() => onChange(i)}
           className={cn(
-            "min-w-[44px] flex-1 rounded-md border px-2 py-1.5 text-xs transition-colors",
+            "min-h-[44px] min-w-[44px] flex-1 rounded-md border px-2 py-2.5 text-xs transition-colors",
             value === i
               ? "border-primary bg-primary text-on-primary"
               : "border-border text-ink-muted hover:bg-surface-1",
@@ -122,7 +122,7 @@ export function CheckInForm({ patientId }: { patientId: string }) {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-5 py-8">
+    <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8">
       <Link
         href={`/portal/${patientId}`}
         className="text-ink-muted hover:text-ink mb-4 inline-flex items-center gap-1 text-sm"
@@ -154,9 +154,9 @@ export function CheckInForm({ patientId }: { patientId: string }) {
 
       {/* Pain */}
       <section className="mt-8">
-        <div className="flex items-center justify-between">
-          <Label>How much pain have you had in the past week?</Label>
-          <span className="font-numeric text-ink tabular-nums">{pain} / 10</span>
+        <div className="flex items-center justify-between gap-3">
+          <Label className="min-w-0">How much pain have you had in the past week?</Label>
+          <span className="font-numeric text-ink shrink-0 tabular-nums">{pain} / 10</span>
         </div>
         <Slider
           className="mt-3"
@@ -174,9 +174,9 @@ export function CheckInForm({ patientId }: { patientId: string }) {
 
       {/* Global */}
       <section className="mt-8">
-        <div className="flex items-center justify-between">
-          <Label>Considering all the ways your arthritis affects you, how are you?</Label>
-          <span className="font-numeric text-ink tabular-nums">{globalHealth} / 10</span>
+        <div className="flex items-center justify-between gap-3">
+          <Label className="min-w-0">Considering all the ways your arthritis affects you, how are you?</Label>
+          <span className="font-numeric text-ink shrink-0 tabular-nums">{globalHealth} / 10</span>
         </div>
         <Slider
           className="mt-3"
@@ -231,12 +231,17 @@ export function CheckInForm({ patientId }: { patientId: string }) {
         )}
       </section>
 
-      <div className="mt-8 flex items-center justify-between gap-3">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-ink-subtle text-xs">
           Your answers go to your care team. This isn&apos;t a way to reach someone urgently —
           for emergencies, call your doctor or 911.
         </p>
-        <Button size="lg" onClick={submit} disabled={submitting} className="shrink-0">
+        <Button
+          size="lg"
+          onClick={submit}
+          disabled={submitting}
+          className="w-full shrink-0 sm:w-auto"
+        >
           Submit check-in
         </Button>
       </div>

@@ -62,7 +62,7 @@ export function PortalHome({ patientId }: { patientId: string }) {
   const rung = carePlan.currentRung;
 
   return (
-    <div className="mx-auto max-w-2xl px-5 py-8">
+    <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-8">
       <h1 className="text-display text-ink text-2xl">Hi {firstName}</h1>
       <p className="text-ink-muted mt-1">
         Your care team monitors how you&apos;re doing between visits. Keeping your check-ins
@@ -70,7 +70,7 @@ export function PortalHome({ patientId }: { patientId: string }) {
       </p>
 
       {/* Check-in CTA */}
-      <div className="border-primary/30 bg-primary-light/50 mt-6 flex flex-col items-start gap-3 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-primary/30 bg-primary-light/50 mt-6 flex flex-col items-start gap-3 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
         <div>
           <p className="text-ink flex items-center gap-2 font-medium">
             <ClipboardCheck className="text-primary size-5" /> Time for a check-in?
@@ -82,7 +82,7 @@ export function PortalHome({ patientId }: { patientId: string }) {
             It takes about a minute.
           </p>
         </div>
-        <Button asChild size="lg" className="shrink-0">
+        <Button asChild size="lg" className="w-full shrink-0 sm:w-auto">
           <Link href={`/portal/${patient.id}/check-in`}>Start check-in</Link>
         </Button>
       </div>
@@ -109,12 +109,12 @@ export function PortalHome({ patientId }: { patientId: string }) {
 
       {/* Check-in history */}
       <h2 className="text-label text-ink-subtle mt-8 mb-3 uppercase">Your check-ins</h2>
-      <div className="border-border rounded-xl border bg-canvas p-5">
+      <div className="border-border rounded-xl border bg-canvas p-4 sm:p-5">
         {measures.length === 0 ? (
           <p className="text-ink-muted text-sm">No check-ins yet.</p>
         ) : (
           <>
-            <ScoreTrend measures={measures} width={560} height={64} monochrome />
+            <ScoreTrend measures={measures} width={560} height={64} monochrome fluid />
             <ul className="divide-border mt-3 divide-y">
               {history.map((c) => (
                 <li
@@ -140,7 +140,7 @@ export function PortalHome({ patientId }: { patientId: string }) {
       <h2 className="text-label text-ink-subtle mt-8 mb-3 uppercase">
         Messages with your care team
       </h2>
-      <div className="border-border rounded-xl border bg-canvas p-5">
+      <div className="border-border rounded-xl border bg-canvas p-4 sm:p-5">
         <MessageThread
           messages={thread}
           onSend={(body) => sendMessage(patient.id, body, "portal", "patient")}
