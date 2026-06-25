@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================================
+   DESIGN.md is the single source of truth for every token below.
+   Tokens are ported verbatim from DESIGN.md frontmatter, then shadcn/ui's
+   semantic variables are mapped onto them so all components inherit the system.
+   ========================================================================== */
+
+@theme inline {
+  /* shadcn semantic colors -> DESIGN tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* DESIGN brand + canvas (direct-use utilities: bg-canvas, text-ink, ...) */
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-border-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-on-primary: var(--on-primary);
+
+  /* DESIGN clinical status palette (foreground + paired background tint) */
+  --color-urgent: var(--urgent);
+  --color-urgent-bg: var(--urgent-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-normal: var(--normal);
+  --color-normal-bg: var(--normal-bg);
+  --color-follow-up: var(--follow-up);
+  --color-follow-up-bg: var(--follow-up-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+
+  /* DESIGN typography */
+  --font-sans: var(--font-inter), -apple-system, system-ui, sans-serif;
+  --font-heading: var(--font-inter), -apple-system, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, Menlo, monospace;
+
+  /* DESIGN radius scale: sm 4 / md 8 / lg 12 / xl 16 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* DESIGN shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-overlay: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+:root {
+  /* canvas + structure */
+  --canvas: #ffffff;
+  --surface-1: #f9fafb;
+  --surface-2: #f3f4f6;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  /* ink scale */
+  --ink: #111827;
+  --ink-muted: #6b7280;
+  --ink-subtle: #9ca3af;
+
+  /* brand */
+  --primary: #0a9e8f;
+  --primary-hover: #088a7d;
+  --primary-light: #e6f6f5;
+  --on-primary: #ffffff;
+
+  /* clinical status palette */
+  --urgent: #dc2626;
+  --urgent-bg: #fef2f2;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --normal: #059669;
+  --normal-bg: #ecfdf5;
+  --follow-up: #7c3aed;
+  --follow-up-bg: #f5f3ff;
+  --info: #0284c7;
+  --info-bg: #f0f9ff;
+
+  /* shadcn semantic variables -> DESIGN tokens */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--canvas);
+  --card-foreground: var(--ink);
+  --popover: var(--canvas);
+  --popover-foreground: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-1);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--primary-light);
+  --accent-foreground: var(--ink);
+  --destructive: var(--urgent);
+  --input: var(--border-strong);
+  --ring: var(--primary);
+
+  /* charts: teal then the status hues, for trend lines / sparklines */
+  --chart-1: var(--primary);
+  --chart-2: var(--info);
+  --chart-3: var(--follow-up);
+  --chart-4: var(--warning);
+  --chart-5: var(--normal);
+
+  /* sidebar (clinical dashboard nav) */
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--primary-light);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
+
+  --radius: 0.5rem;
+
+  /* DESIGN motion */
+  --duration-fast: 100ms;
+  --duration-base: 180ms;
+  --duration-slow: 300ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* DESIGN body: 15px / 1.65 / -0.005em */
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+  }
+  html {
+    @apply font-sans;
+  }
+  /* DESIGN: 2px teal focus ring at 2px offset */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* DESIGN display/heading: 600, -0.02em tracking */
+  .text-display {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  /* DESIGN label/caption: 12px, 500, +0.02em tracking */
+  .text-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+  /* DESIGN: monospaced numerics for health data (scores, doses, lab values) */
+  .font-numeric {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* DESIGN: all motion respects prefers-reduced-motion (collapse to instant) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
